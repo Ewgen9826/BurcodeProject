@@ -8,15 +8,23 @@ import { CreateProductDto } from "../dtos/product/create-product.dto";
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectRepository(ProductRepository) private productRepository: ProductRepository,
+    @InjectRepository(ProductRepository)
+    private productRepository: ProductRepository,
   ) {}
   async getProducts(): Promise<Product[]> {
     const products = await this.productRepository.getProducts();
     return products;
   }
 
+  async getProduct(id: number): Promise<Product> {
+    const product = await this.productRepository.getProductById(id);
+    return product;
+  }
+
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
-    const product = await this.productRepository.createProduct(createProductDto);
+    const product = await this.productRepository.createProduct(
+      createProductDto,
+    );
     return product;
   }
 
@@ -24,7 +32,10 @@ export class ProductsService {
     id: number,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
-    const product = await this.productRepository.updateProduct(id, updateProductDto);
+    const product = await this.productRepository.updateProduct(
+      id,
+      updateProductDto,
+    );
     return product;
   }
 

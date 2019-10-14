@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DatabaseModule } from "./infrastructure/database/database.module";
 import { TypeOrmConfigService } from "./infrastructure/database/typeorm.service";
+import { ProductModule } from "./infrastructure/modules/product.module";
 
 @Module({
   imports: [
@@ -9,8 +10,8 @@ import { TypeOrmConfigService } from "./infrastructure/database/typeorm.service"
       imports: [DatabaseModule],
       useExisting: TypeOrmConfigService,
     }),
+    ProductModule,
   ],
-  controllers: [],
   providers: [],
 })
 export class AppModule {}
