@@ -9,9 +9,9 @@ import { CreateProductDto } from "../dtos/product/create-product.dto";
 import { UpdateProductDto } from "../dtos/product/update-product.dto";
 
 @EntityRepository(Product)
-export class PlaceRepository extends Repository<Product> {
+export class ProductRepository extends Repository<Product> {
   private readonly logger = new CustomLogger("ProductRepository");
-  async getProduct(): Promise<Product[]> {
+  async getProducts(): Promise<Product[]> {
     const query = this.createQueryBuilder("product");
 
     try {
@@ -23,7 +23,7 @@ export class PlaceRepository extends Repository<Product> {
     }
   }
 
-  async createPlace(createProductDto: CreateProductDto): Promise<Product> {
+  async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const {
       name,
       producerName,
@@ -54,7 +54,7 @@ export class PlaceRepository extends Repository<Product> {
     return product;
   }
 
-  async updatePlace(
+  async updateProduct(
     id: number,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
@@ -88,7 +88,7 @@ export class PlaceRepository extends Repository<Product> {
     return product;
   }
 
-  async deletePlace(id: number): Promise<void> {
+  async deleteProduct(id: number): Promise<void> {
     const result = await this.delete({ id });
     if (result.affected === 0) {
       const errorMessage = `Product with ID: ${id} not found`;
