@@ -11,7 +11,7 @@ export class Product extends BaseEntity {
   producerName: string;
 
   @Column()
-  produceLink: string;
+  producerLink: string;
 
   @Column()
   taste: string;
