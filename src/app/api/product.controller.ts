@@ -22,7 +22,7 @@ export class ProductController {
     return products;
   }
 
-  @Get(":id")
+  @Get("/:id")
   async get(@Param() id: number): Promise<ProductDto> {
     const product = await this.productsService.getProduct(id);
     return product;
@@ -36,7 +36,7 @@ export class ProductController {
     return product;
   }
 
-  @Put(":id")
+  @Put("/:id")
   async update(
     @Param() id: number,
     @Body() updateProductDto: UpdateProductDto,
@@ -48,7 +48,7 @@ export class ProductController {
     return product;
   }
 
-  @Delete(":id")
+  @Delete("/:id")
   async delete(@Param() id: number): Promise<void> {
     await this.productsService.deleteProduct(id);
   }

@@ -69,7 +69,7 @@ export class ProductRepository extends Repository<Product> {
       taste,
     } = updateProductDto;
 
-    const product = new Product();
+    const product = await this.getProductById(id);
     product.name = name;
     product.producerName = producerName;
     product.producerLink = producerLink;
