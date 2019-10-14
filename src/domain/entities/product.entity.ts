@@ -1,4 +1,11 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from "typeorm";
+import {
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  Entity,
+  OneToMany,
+} from "typeorm";
+import { Photo } from "./photo.entity";
 
 @Entity()
 export class Product extends BaseEntity {
@@ -28,4 +35,7 @@ export class Product extends BaseEntity {
 
   @Column()
   imagePath: string;
+
+  @OneToMany(() => Photo, photo => photo.product)
+  photos: Photo[];
 }
