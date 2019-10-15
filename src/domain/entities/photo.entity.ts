@@ -19,7 +19,7 @@ export class Photo extends BaseEntity {
   createAt: Date;
 
   @Column()
-  path: string;
+  url: string;
 
   @ManyToOne(() => Product, product => product.photos)
   product: Product;

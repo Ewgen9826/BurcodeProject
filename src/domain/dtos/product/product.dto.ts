@@ -6,5 +6,4 @@ export class ProductDto {
   priceWithoutTax: number;
   priceOneOfPretein: number;
   remarks: string;
-  imagePath: string;
 }

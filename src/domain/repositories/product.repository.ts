@@ -30,7 +30,6 @@ export class ProductRepository extends Repository<Product> {
       producerLink,
       priceOneOfPretein,
       priceWithoutTax,
-      imagePath,
       remarks,
       taste,
     } = createProductDto;
@@ -43,7 +42,6 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
-    product.imagePath = imagePath;
 
     try {
       product.save();
@@ -64,7 +62,6 @@ export class ProductRepository extends Repository<Product> {
       producerLink,
       priceOneOfPretein,
       priceWithoutTax,
-      imagePath,
       remarks,
       taste,
     } = updateProductDto;
@@ -77,8 +74,6 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
-    product.imagePath = imagePath;
-
     try {
       product.save();
     } catch (error) {

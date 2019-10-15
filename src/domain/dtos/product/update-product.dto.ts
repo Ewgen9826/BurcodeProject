@@ -24,8 +24,4 @@ export class UpdateProductDto {
 
   @IsNotEmpty()
   remarks: string;
-
-  @IsNotEmpty()
-  @IsUrl()
-  imagePath: string;
 }

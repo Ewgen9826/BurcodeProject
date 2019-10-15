@@ -33,9 +33,6 @@ export class Product extends BaseEntity {
   @Column()
   remarks: string;
 
-  @Column()
-  imagePath: string;
-
   @OneToMany(() => Photo, photo => photo.product)
   photos: Photo[];
 }

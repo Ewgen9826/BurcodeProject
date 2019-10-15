@@ -24,8 +24,4 @@ export class CreateProductDto {
 
   @IsNotEmpty()
   remarks: string;
-
-  @IsNotEmpty()
-  @IsUrl()
-  imagePath: string;
 }
