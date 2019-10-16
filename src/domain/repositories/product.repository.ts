@@ -42,6 +42,8 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
+    product.createAt = Date.now().toString();
+    product.updateAt = Date.now().toString();
 
     try {
       product.save();
@@ -74,6 +76,7 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
+    product.updateAt = Date.now().toString();
     try {
       product.save();
     } catch (error) {

@@ -13,7 +13,7 @@ import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
 import { ProductDto } from "../../domain/dtos/product/product.dto";
 
 @Controller("api/products")
-export class ProductController {
+export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()

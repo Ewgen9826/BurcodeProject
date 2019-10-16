@@ -7,7 +7,7 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: false,
+    //logger: false,
   });
   const logger = new CustomLogger("bootstrap");
 
@@ -15,7 +15,7 @@ async function bootstrap() {
   const env = app.get("ConfigService").env as Environment;
 
   // custom logger
-  app.useLogger(app.get(CustomLogger));
+  //app.useLogger(app.get(CustomLogger));
 
   // global validation
   app.useGlobalPipes(new ValidationPipe({ transform: true }));

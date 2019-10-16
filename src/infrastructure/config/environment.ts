@@ -37,4 +37,7 @@ export class Environment {
   @IsNumber()
   @Min(2000)
   databasePort: number = 0;
+
+  @IsString()
+  storePhotosPath: string = "";
 }

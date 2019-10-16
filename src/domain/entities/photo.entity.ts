@@ -13,13 +13,13 @@ export class Photo extends BaseEntity {
   id: number;
 
   @Column()
+  originalName: string;
+
+  @Column()
+  createAt: string;
+
+  @Column()
   name: string;
-
-  @Column()
-  createAt: Date;
-
-  @Column()
-  url: string;
 
   @ManyToOne(() => Product, product => product.photos)
   product: Product;
