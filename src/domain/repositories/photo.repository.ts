@@ -16,7 +16,7 @@ export class PhotoRepository extends Repository<Photo> {
     photo.originalName = originalName;
     photo.name = name;
     photo.product = product;
-    photo.createAt = Date.now().toString();
+    photo.createAt = new Date(Date.now());
 
     try {
       photo.save();

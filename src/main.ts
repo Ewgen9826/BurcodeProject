@@ -18,7 +18,12 @@ async function bootstrap() {
   //app.useLogger(app.get(CustomLogger));
 
   // global validation
-  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      validationError: { target: false, value: false },
+    }),
+  );
 
   // configuration Swagger
   const options = new DocumentBuilder()

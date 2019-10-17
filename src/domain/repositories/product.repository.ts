@@ -42,8 +42,9 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
-    product.createAt = Date.now().toString();
-    product.updateAt = Date.now().toString();
+    const date = new Date(Date.now());
+    product.createAt = date;
+    product.updateAt = date;
 
     try {
       product.save();
@@ -76,7 +77,7 @@ export class ProductRepository extends Repository<Product> {
     product.priceWithoutTax = priceWithoutTax;
     product.taste = taste;
     product.remarks = remarks;
-    product.updateAt = Date.now().toString();
+    product.updateAt = new Date(Date.now());
     try {
       product.save();
     } catch (error) {
@@ -96,6 +97,7 @@ export class ProductRepository extends Repository<Product> {
   }
 
   async getProductById(id: number): Promise<Product> {
+    console.log(id);
     const product = await this.findOne({ id });
     if (!product) {
       const errorMessage = `Product with ID ${id} not found`;

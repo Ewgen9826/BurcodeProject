@@ -4,6 +4,7 @@ import { ProductRepository } from "../repositories/product.repository";
 import { Product } from "../entities/product.entity";
 import { UpdateProductDto } from "../dtos/product/update-product.dto";
 import { CreateProductDto } from "../dtos/product/create-product.dto";
+import { ProductSearchModel } from "../search-models/product.search.model";
 
 @Injectable()
 export class ProductsService {
@@ -11,8 +12,8 @@ export class ProductsService {
     @InjectRepository(ProductRepository)
     private productRepository: ProductRepository,
   ) {}
-  async getProducts(): Promise<Product[]> {
-    const products = await this.productRepository.getProducts();
+  async search(productSearchModel: ProductSearchModel): Promise<Product[]> {
+    const products = await productSearchModel.find();
     return products;
   }
 

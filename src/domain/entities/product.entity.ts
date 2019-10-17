@@ -34,10 +34,10 @@ export class Product extends BaseEntity {
   remarks: string;
 
   @Column()
-  createAt: string;
+  createAt: Date;
 
   @Column()
-  updateAt: string;
+  updateAt: Date;
 
   @OneToMany(() => Photo, photo => photo.product)
   photos: Photo[];

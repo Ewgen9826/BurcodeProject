@@ -16,7 +16,7 @@ export class Photo extends BaseEntity {
   originalName: string;
 
   @Column()
-  createAt: string;
+  createAt: Date;
 
   @Column()
   name: string;

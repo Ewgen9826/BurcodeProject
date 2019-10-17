@@ -30,7 +30,7 @@ export class PhotoService {
       this.logger.error("Photo not created");
       throw new InternalServerErrorException();
     }
-    product.updateAt = Date.now().toString();
+    product.updateAt = new Date(Date.now());
     createPhotoDto.product = product;
     createPhotoDto.originalName = originalFileName;
     createPhotoDto.name = fileName;
@@ -48,7 +48,7 @@ export class PhotoService {
       this.logger.error(`Photo with name ${photo.name} not deleted`);
       throw new InternalServerErrorException();
     }
-    photo.product.updateAt = Date.now().toString();
+    photo.product.updateAt = new Date(Date.now());
     await this.photoRepository.deletePhoto(photo.name);
   }
 }
