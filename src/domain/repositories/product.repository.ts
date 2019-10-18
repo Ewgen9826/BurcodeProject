@@ -97,7 +97,6 @@ export class ProductRepository extends Repository<Product> {
   }
 
   async getProductById(id: number): Promise<Product> {
-    console.log(id);
     const product = await this.findOne({ id });
     if (!product) {
       const errorMessage = `Product with ID ${id} not found`;

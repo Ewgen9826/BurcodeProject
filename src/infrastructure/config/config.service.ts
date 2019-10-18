@@ -12,7 +12,7 @@ export class ConfigService {
   constructor(private options: Options) {
     const filePath = `${process.env.NODE_ENV || "development"}.env`;
     const config = dotenv.parse(
-      fs.readFileSync(join(__dirname, "../../../", options.folder, filePath)),
+      fs.readFileSync(join(options.folder, filePath)),
     );
     this.validate(config)
       .then(result => (this.env = result))

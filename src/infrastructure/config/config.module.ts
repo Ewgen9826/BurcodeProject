@@ -5,7 +5,8 @@ import { Options } from "./options";
 
 @Module({})
 export class ConfigModule {
-  static register(options: Options): DynamicModule {
+  static register(options?: Options): DynamicModule {
+    options = options ? options : { folder: "./env" };
     return {
       module: ConfigModule,
       providers: [

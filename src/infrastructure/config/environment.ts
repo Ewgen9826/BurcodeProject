@@ -5,6 +5,7 @@ import {
   Min,
   IsNotEmpty,
   IsIn,
+  IsInt,
 } from "class-validator";
 import { TypeDatabase } from "./type-database";
 export class Environment {
@@ -40,4 +41,10 @@ export class Environment {
 
   @IsString()
   storePhotosPath: string = "";
+
+  @IsString()
+  jwtSecret: string = "secret";
+
+  @IsInt()
+  jwtExpiresIn: number = 3600;
 }

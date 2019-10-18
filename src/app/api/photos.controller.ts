@@ -8,11 +8,13 @@ import {
   Get,
   NotFoundException,
   Delete,
+  UseGuards,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { PhotoService } from "../../domain/services/photo.service";
 import { Photo } from "../../domain/entities/photo.entity";
 import { ConfigService } from "../../infrastructure/config/config.service";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller("api/:productId/photos")
 export class PhotosController {
@@ -32,6 +34,7 @@ export class PhotosController {
   }
 
   @Post()
+  @UseGuards(AuthGuard())
   @UseInterceptors(FileInterceptor("file"))
   async uploadFile(
     @UploadedFile() file,
@@ -46,6 +49,7 @@ export class PhotosController {
   }
 
   @Delete("/:fileName")
+  @UseGuards(AuthGuard())
   async delete(@Param("fileName") fileName: string) {
     this.photoService.deletePhoto(fileName);
   }

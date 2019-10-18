@@ -8,14 +8,14 @@ import {
   Delete,
   Query,
   ParseIntPipe,
-  UsePipes,
-  ValidationPipe,
+  UseGuards,
 } from "@nestjs/common";
 import { ProductsService } from "../../domain/services/product.service";
 import { CreateProductDto } from "../../domain/dtos/product/create-product.dto";
 import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
 import { ProductDto } from "../../domain/dtos/product/product.dto";
 import { ProductSearchModel } from "../../domain/search-models/product.search.model";
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller("api/products")
 export class ProductsController {
@@ -36,6 +36,7 @@ export class ProductsController {
   }
 
   @Post()
+  @UseGuards(AuthGuard())
   async create(
     @Body() createProductDto: CreateProductDto,
   ): Promise<ProductDto> {
@@ -44,6 +45,7 @@ export class ProductsController {
   }
 
   @Put("/:id")
+  @UseGuards(AuthGuard())
   async update(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
@@ -56,6 +58,7 @@ export class ProductsController {
   }
 
   @Delete("/:id")
+  @UseGuards(AuthGuard())
   async delete(@Param() id: number): Promise<void> {
     await this.productsService.deleteProduct(id);
   }
