@@ -2,6 +2,7 @@ import { Product } from "../entities/product.entity";
 import { getRepository, SelectQueryBuilder } from "typeorm";
 import { IsOptional, IsIn, IsEnum } from "class-validator";
 import { ProductPredicateEnum } from "../enums/product.predicate.enum";
+import { ApiImplicitQuery, ApiModelPropertyOptional } from "@nestjs/swagger";
 
 export class ProductSearchModel {
   private readonly queryBuilder: SelectQueryBuilder<Product>;
@@ -9,23 +10,42 @@ export class ProductSearchModel {
   constructor() {
     this.queryBuilder = getRepository(Product).createQueryBuilder("product");
   }
+  @ApiModelPropertyOptional()
   ids: string;
+
+  @ApiModelPropertyOptional()
   name: string;
+
+  @ApiModelPropertyOptional()
   producerName: string;
+
+  @ApiModelPropertyOptional()
   producerLink: string;
+
+  @ApiModelPropertyOptional()
   taste: string;
+
+  @ApiModelPropertyOptional()
   remarks: string;
 
+  @ApiModelPropertyOptional()
   @IsOptional()
   skip: number = 0;
 
+  @ApiModelPropertyOptional()
   @IsOptional()
   take: number = 10;
 
+  @ApiModelPropertyOptional({
+    enum: ["name", "producer", "date", "price"],
+  })
   @IsOptional()
   @IsEnum(ProductPredicateEnum)
   predicate: ProductPredicateEnum = ProductPredicateEnum.Default;
 
+  @ApiModelPropertyOptional({
+    enum: ["true", "false"],
+  })
   @IsOptional()
   @IsIn(["false", "true"])
   revers: string = "false";

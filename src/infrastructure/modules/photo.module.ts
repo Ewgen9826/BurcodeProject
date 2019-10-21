@@ -4,19 +4,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductRepository } from "../../domain/repositories/product.repository";
 import { PhotoRepository } from "../../domain/repositories/photo.repository";
 import { PhotoService } from "../../domain/services/photo.service";
-import { CustomMulterModule } from "../multer/custom.multer.module";
-import { MulterModule } from "@nestjs/platform-express";
-import { MulterConfigService } from "../multer/multer.config.service";
 import { AuthModule } from "./auth.module";
+import { CustomMulterModule } from "../multer/custom.multer.module";
 
 @Module({
   imports: [
     AuthModule,
+    CustomMulterModule,
     TypeOrmModule.forFeature([ProductRepository, PhotoRepository]),
-    MulterModule.registerAsync({
-      imports: [CustomMulterModule],
-      useExisting: MulterConfigService,
-    }),
   ],
   controllers: [PhotosController],
   providers: [PhotoService],

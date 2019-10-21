@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { LoggerModule } from "../logger/logger.module";
 import { AuthController } from "../../app/api/auth.controller";
 import { AuthRepository } from "../../domain/repositories/auth.repository";
 import { AuthService } from "../../domain/services/auth.service";
@@ -15,6 +14,6 @@ import { CommonModule } from "./common.module";
   ],
   controllers: [AuthController],
   providers: [AuthRepository, AuthService],
-  exports: [CommonModule, JwtAuthModule],
+  exports: [JwtAuthModule, CommonModule],
 })
 export class AuthModule {}

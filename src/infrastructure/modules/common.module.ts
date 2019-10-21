@@ -6,6 +6,6 @@ import { LoggerModule } from "../logger/logger.module";
   imports: [ConfigModule.register(), LoggerModule],
   controllers: [],
   providers: [],
-  exports: [ConfigModule],
+  exports: [ConfigModule, LoggerModule],
 })
 export class CommonModule {}

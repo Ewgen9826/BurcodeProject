@@ -15,7 +15,7 @@ async function bootstrap() {
   const env = app.get("ConfigService").env as Environment;
 
   // custom logger
-  //app.useLogger(app.get(CustomLogger));
+  //  app.useLogger(app.get(CustomLogger));
 
   // global validation
   app.useGlobalPipes(
@@ -30,6 +30,7 @@ async function bootstrap() {
     .setTitle("Barcodes Application")
     .setDescription("The application is barcode scanner")
     .setVersion("1.0")
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup("swagger", app, document);

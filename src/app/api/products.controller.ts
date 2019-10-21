@@ -16,7 +16,13 @@ import { UpdateProductDto } from "../../domain/dtos/product/update-product.dto";
 import { ProductDto } from "../../domain/dtos/product/product.dto";
 import { ProductSearchModel } from "../../domain/search-models/product.search.model";
 import { AuthGuard } from "@nestjs/passport";
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiImplicitParam,
+} from "@nestjs/swagger";
 
+@ApiUseTags("products")
 @Controller("api/products")
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
@@ -30,6 +36,7 @@ export class ProductsController {
   }
 
   @Get("/:id")
+  @ApiImplicitParam({ name: "product id", required: true, type: Number })
   async get(@Param() id: number): Promise<ProductDto> {
     const product = await this.productsService.getProduct(id);
     return product;
@@ -37,6 +44,7 @@ export class ProductsController {
 
   @Post()
   @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   async create(
     @Body() createProductDto: CreateProductDto,
   ): Promise<ProductDto> {
@@ -46,6 +54,7 @@ export class ProductsController {
 
   @Put("/:id")
   @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   async update(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateProductDto: UpdateProductDto,
@@ -59,6 +68,8 @@ export class ProductsController {
 
   @Delete("/:id")
   @UseGuards(AuthGuard())
+  @ApiBearerAuth()
+  @ApiImplicitParam({ name: "product id", required: true, type: Number })
   async delete(@Param() id: number): Promise<void> {
     await this.productsService.deleteProduct(id);
   }

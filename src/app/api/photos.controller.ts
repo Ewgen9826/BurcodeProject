@@ -15,7 +15,14 @@ import { PhotoService } from "../../domain/services/photo.service";
 import { Photo } from "../../domain/entities/photo.entity";
 import { ConfigService } from "../../infrastructure/config/config.service";
 import { AuthGuard } from "@nestjs/passport";
+import {
+  ApiUseTags,
+  ApiBearerAuth,
+  ApiImplicitFile,
+  ApiImplicitParam,
+} from "@nestjs/swagger";
 
+@ApiUseTags("photos")
 @Controller("api/:productId/photos")
 export class PhotosController {
   constructor(
@@ -23,12 +30,12 @@ export class PhotosController {
     private readonly configService: ConfigService,
   ) {}
 
-  @Get("/:id")
-  get(@Param("id") id: string, @Res() res) {
-    if (id === null) {
+  @Get("/:fileName")
+  get(@Param("fileName") fileName: string, @Res() res) {
+    if (fileName === null) {
       return new NotFoundException("Image not found");
     }
-    res.sendFile(id, {
+    res.sendFile(fileName, {
       root: this.configService.environment.storePhotosPath,
     });
   }
@@ -36,6 +43,8 @@ export class PhotosController {
   @Post()
   @UseGuards(AuthGuard())
   @UseInterceptors(FileInterceptor("file"))
+  @ApiBearerAuth()
+  @ApiImplicitFile({ required: true, name: "file" })
   async uploadFile(
     @UploadedFile() file,
     @Param("productId") productId: number,
@@ -50,6 +59,7 @@ export class PhotosController {
 
   @Delete("/:fileName")
   @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   async delete(@Param("fileName") fileName: string) {
     this.photoService.deletePhoto(fileName);
   }
